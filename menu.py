@@ -1,6 +1,7 @@
 from utils import EntradaSalida as es
 from operaciones import CalculadoraAritmetica
 from notas import calcular_media_ponderada_interactiva
+from calculos import potencia_dos, logaritmo_base_dos
 
 # Las opciones del menú se corresponden con su posición en estas listas.
 menuGeneral = [
@@ -85,6 +86,32 @@ def ejecutar_operacion(calculadoraAritmetica, opcion):
         print(f"\n¡Seguimos con la {nombre}!\n")
 
 
+def repetir_calculo():
+    """Pregunta si se quiere repetir una operación de ingeniería."""
+    repetir = input("¿Quieres hacer otro cálculo? (s/n): ").strip().lower()
+    while repetir not in ("s", "si", "sí", "n", "no"):
+        repetir = input("Responde s o n: ").strip().lower()
+    return repetir in ("s", "si", "sí")
+
+
+def ejecutar_calculo_ingenieria(opcion):
+    """Gestiona la entrada, el cálculo y la repetición de las opciones 5 y 6."""
+    while True:
+        try:
+            if opcion == 5:
+                exponente = es.tecladoFloat("Exponente de 2: ")
+                resultado = potencia_dos(exponente)
+                print(f"\n2 elevado a {exponente:g} = {resultado:g}\n")
+            else:
+                numero = es.tecladoFloat("Número positivo: ")
+                resultado = logaritmo_base_dos(numero)
+                print(f"\nLogaritmo en base 2 de {numero:g} = {resultado:g}\n")
+        except ValueError as error:
+            print(f"\nError: {error}\n")
+        if not repetir_calculo():
+            break
+
+
 def iniciar_calculadora():
     """Inicia la aplicación y mantiene la navegación hasta que el usuario salga."""
     calculadora = CalculadoraAritmetica()
@@ -108,6 +135,8 @@ def iniciar_calculadora():
                 ejecutar_operacion(calculadora, operacion)
         elif opcion == 2:
             calcular_media_ponderada_interactiva()
+        elif opcion == 5 or opcion == 6:
+            ejecutar_calculo_ingenieria(opcion)
         else:
             # Las opciones restantes están reservadas para el resto del equipo.
             print("\nFunción todavía no implementada.\n")
