@@ -1,5 +1,6 @@
 from utils import EntradaSalida as es
 from operaciones import CalculadoraAritmetica
+from notas import calcular_media_ponderada_interactiva
 
 # Las opciones del menú se corresponden con su posición en estas listas.
 menuGeneral = [
@@ -105,6 +106,8 @@ def iniciar_calculadora():
                 if operacion == 0:
                     break
                 ejecutar_operacion(calculadora, operacion)
+        elif opcion == 2:
+            calcular_media_ponderada_interactiva()
         else:
             # Las opciones restantes están reservadas para el resto del equipo.
             print("\nFunción todavía no implementada.\n")
