@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #CALCULO DE POTENCIA DE 2
 def potencia_dos():
     num_potencia_dos = int(input("A que potencia quieres elevar el 2: "))
@@ -29,3 +30,9 @@ def logaritmo_base_dos():
 
 potencia_dos()
 logaritmo_base_dos()
+=======
+from menu import iniciar_calculadora
+
+if __name__ == "__main__":
+    iniciar_calculadora()
+>>>>>>> f16ba9a66c622a5c1e1875591d509910739ab217
