@@ -2,6 +2,7 @@ from utils import EntradaSalida as es
 from operaciones import CalculadoraAritmetica
 from notas import calcular_media_ponderada_interactiva
 from calculos import potencia_dos, logaritmo_base_dos
+from conversiones import convertir_base, convertir_unidades
 
 # Las opciones del menú se corresponden con su posición en estas listas.
 menuGeneral = [
@@ -112,6 +113,42 @@ def ejecutar_calculo_ingenieria(opcion):
             break
 
 
+def ejecutar_conversion_bases():
+    """Solicita los datos y permite repetir una conversión de base."""
+    bases = {"2": "binario", "8": "octal", "10": "decimal", "16": "hexadecimal"}
+    while True:
+        numero = input("Número entero que deseas convertir: ").strip()
+        origen = input("Base de origen (binario, octal, decimal, hexadecimal): ").strip().lower()
+        destino = input("Base de destino (binario, octal, decimal, hexadecimal): ").strip().lower()
+        origen = bases.get(origen, origen)
+        destino = bases.get(destino, destino)
+        try:
+            resultado = convertir_base(numero, origen, destino)
+            print(f"\nResultado: {resultado}\n")
+        except ValueError as error:
+            print(f"\nError: {error}\n")
+        if not repetir_calculo():
+            break
+
+
+def ejecutar_conversion_unidades():
+    """Solicita datos y permite repetir una conversión de unidades."""
+    unidades = {"kib": "KiB", "mib": "MiB", "gib": "GiB"}
+    while True:
+        cantidad = es.tecladoFloat("Cantidad: ")
+        origen = input("Unidad de origen (KiB, MiB, GiB): ").strip().lower()
+        destino = input("Unidad de destino (KiB, MiB, GiB): ").strip().lower()
+        origen = unidades.get(origen, origen)
+        destino = unidades.get(destino, destino)
+        try:
+            resultado = convertir_unidades(cantidad, origen, destino)
+            print(f"\nResultado: {resultado} {destino}\n")
+        except ValueError as error:
+            print(f"\nError: {error}\n")
+        if not repetir_calculo():
+            break
+
+
 def iniciar_calculadora():
     """Inicia la aplicación y mantiene la navegación hasta que el usuario salga."""
     calculadora = CalculadoraAritmetica()
@@ -135,6 +172,10 @@ def iniciar_calculadora():
                 ejecutar_operacion(calculadora, operacion)
         elif opcion == 2:
             calcular_media_ponderada_interactiva()
+        elif opcion == 3:
+            ejecutar_conversion_bases()
+        elif opcion == 4:
+            ejecutar_conversion_unidades()
         elif opcion == 5 or opcion == 6:
             ejecutar_calculo_ingenieria(opcion)
         else:
