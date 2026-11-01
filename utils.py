@@ -1,16 +1,24 @@
+# Grupo: C12 - Calculadora Multifunción
+# Integrantes: Iker Sánchez Prieto, Roger Pedra Vilalta y Bernat Marín López
+
 import math
 
 
 class EntradaSalida:
-    """Métodos estáticos para leer y validar datos introducidos por teclado."""
+    """Lee y valida entradas sin guardar estado ni requerir una instancia.
+
+    Los métodos estáticos se llaman directamente desde otros módulos.
+    """
 
     @staticmethod
     def tecladoInt(mensaje="Ingrese un número entero: "):
         """Lee un entero; repite la pregunta hasta recibir una entrada válida."""
         while True:
+            # int convierte el texto; si no es un entero, se vuelve a preguntar.
             try:
                 return int(input(mensaje))
             except ValueError:
+                # Capturar el error evita cerrar el programa por una entrada incorrecta.
                 print("Entrada inválida. Escribe un número entero.")
 
     @staticmethod

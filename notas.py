@@ -1,3 +1,6 @@
+# Grupo: C12 - Calculadora Multifunción
+# Integrantes: Iker Sánchez Prieto, Roger Pedra Vilalta y Bernat Marín López
+
 """Cálculo interactivo de la media ponderada de varias notas."""
 
 import math
@@ -8,7 +11,8 @@ from utils import EntradaSalida as es
 def calcular_media_ponderada(notas, pesos):
     """Devuelve la media ponderada tras validar notas y pesos.
 
-    Las notas deben estar entre 0 y 10, ambos incluidos. Los pesos deben ser
+    Cada nota se empareja con el peso de la misma posición, que indica su
+    importancia en la media. Las notas deben estar entre 0 y 10. Los pesos deben ser
     no negativos y su suma debe ser mayor que cero.
 
     Raises:
@@ -23,6 +27,7 @@ def calcular_media_ponderada(notas, pesos):
     suma_ponderada = 0
     suma_pesos = 0
 
+    # Se recorre cada pareja y se acumulan nota por peso y suma de pesos.
     for nota, peso in zip(notas, pesos):
         try:
             nota = float(nota)
@@ -38,6 +43,7 @@ def calcular_media_ponderada(notas, pesos):
         suma_ponderada += nota * peso
         suma_pesos += peso
 
+    # El total debe ser positivo para poder dividir y obtener la media.
     if suma_pesos == 0:
         raise ValueError("La suma de los pesos debe ser mayor que cero.")
 

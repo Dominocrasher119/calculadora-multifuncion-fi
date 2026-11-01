@@ -1,10 +1,16 @@
+# Grupo: C12 - Calculadora Multifunción
+# Integrantes: Iker Sánchez Prieto, Roger Pedra Vilalta y Bernat Marín López
+
 """Funciones de cálculo de ingeniería"""
 
 import math
 
 
 def potencia_dos(exponente):
-    """Devuelve 2 elevado a ``exponente``, también para exponentes negativos."""
+    """Devuelve 2 elevado a exponente, incluso si es decimal o negativo.
+
+    Valida que sea finito y controla el desbordamiento; ** calcula la potencia.
+    """
     try:
         exponente = float(exponente)
     except (TypeError, ValueError):
@@ -18,7 +24,10 @@ def potencia_dos(exponente):
 
 
 def logaritmo_base_dos(numero):
-    """Devuelve el logaritmo en base 2 de un número positivo y finito."""
+    """Devuelve el exponente al que elevar 2 para obtener numero.
+
+    Valida que el número sea positivo y finito y utiliza math.log2.
+    """
     try:
         numero = float(numero)
     except (TypeError, ValueError):

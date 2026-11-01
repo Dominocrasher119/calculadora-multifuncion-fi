@@ -1,9 +1,13 @@
+# Grupo: C12 - Calculadora Multifunción
+# Integrantes: Iker Sánchez Prieto, Roger Pedra Vilalta y Bernat Marín López
+
 from utils import EntradaSalida as es
 from operaciones import CalculadoraAritmetica
 from notas import calcular_media_ponderada_interactiva
 from calculos import potencia_dos, logaritmo_base_dos
 from conversiones import convertir_base, convertir_unidades
 
+# El menú conecta las entradas con los módulos de cálculo y conversión.
 # Las opciones del menú se corresponden con su posición en estas listas.
 menuGeneral = [
     "Operaciones aritméticas",
@@ -51,7 +55,7 @@ def ejecutar_operacion(calculadoraAritmetica, opcion):
     """Pide dos números, ejecuta una operación y permite repetirla.
 
     Args:
-        calculadora: Instancia de CalculadoraAritmetica. que realiza el cálculo.
+        calculadoraAritmetica: Instancia que realiza el cálculo.
         opcion: Número de la operación seleccionada en el submenú.
     """
     nombre = submenuAritmetica[opcion - 1].lower()
@@ -61,6 +65,7 @@ def ejecutar_operacion(calculadoraAritmetica, opcion):
         numero1 = es.tecladoFloat("  Primer número: ")
         numero2 = es.tecladoFloat("  Segundo número: ")
 
+        # Cada rama selecciona el método asociado a la opción.
         try:
             if opcion == 1:
                 resultado = calculadoraAritmetica.suma(numero1, numero2)
@@ -75,9 +80,10 @@ def ejecutar_operacion(calculadoraAritmetica, opcion):
                 return
             print(f"\n  Resultado: {resultado}\n")
         except ValueError as error:
-            # Calculadora.division avisa con ValueError si el divisor es cero.
+            # La división avisa si el divisor es cero; se informa sin salir.
             print(f"\n  Error: {error}\n")
 
+        # Se valida la respuesta antes de repetir o volver al submenú.
         repetir = input("¿Quieres hacer otra operación del mismo tipo? (s/n): ").strip().lower()
         while repetir not in ("s", "si", "sí", "n", "no"):
             repetir = input("Responde s o n: ").strip().lower()
@@ -154,6 +160,7 @@ def iniciar_calculadora():
     calculadora = CalculadoraAritmetica()
     mostrar_titulo("CALCULADORA MULTIFUNCIÓN")
 
+    # El menú principal se repite hasta que se elige salir.
     while True:
         opcion = printMenu(menuGeneral, titulo="Menú principal")
         if opcion == 0:
@@ -179,5 +186,5 @@ def iniciar_calculadora():
         elif opcion == 5 or opcion == 6:
             ejecutar_calculo_ingenieria(opcion)
         else:
-            # Las opciones restantes están reservadas para el resto del equipo.
-            print("\nFunción todavía no implementada.\n")
+            # Rama de seguridad: printMenu limita la selección al rango válido.
+            print("\nFunción no válida\n")
