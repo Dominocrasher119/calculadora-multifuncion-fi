@@ -1,4 +1,4 @@
-# Grupo: C12 - Calculadora Multifunción
+# Grupo: B - Calculadora Multifunción
 # Asignatura: Fundamentos de Ingeniería
 # Curso académico: 2026-2027
 #

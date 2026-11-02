@@ -1,4 +1,4 @@
-# Grupo: C12 - Calculadora Multifunción
+# Grupo: B - Calculadora Multifunción
 # Integrantes: Iker Sánchez Prieto, Roger Pedra Vilalta y Bernat Marín López
 
 """Funciones para convertir bases numéricas y unidades informáticas."""

@@ -1,4 +1,4 @@
-# Grupo: C12 - Calculadora Multifunción
+# Grupo: B - Calculadora Multifunción
 # Integrantes: Iker Sánchez Prieto, Roger Pedra Vilalta y Bernat Marín López
 
 from utils import EntradaSalida as es
